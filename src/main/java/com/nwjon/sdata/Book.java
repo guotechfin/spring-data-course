@@ -10,6 +10,10 @@ import java.util.Date;
 
 @Entity
 @Table(name = "book")
+@NamedQueries({
+    //use spring standard for name - class . method name
+    @NamedQuery(name = "Book.queryFour", query = "select b from Book b")
+})
 public class Book {
 
     @Id

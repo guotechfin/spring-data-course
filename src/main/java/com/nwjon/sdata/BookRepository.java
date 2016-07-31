@@ -58,11 +58,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("select b from Book b")
     public List<Book> queryOne();
 
+    //param with ordinal
     @Query("select b from Book b where b.pageCount > ?1")
     public List<Book> queryTwo(int pageCount);
 
+    //preferred - named parameter
     @Query("select b from Book b where b.title = :title")
     public List<Book> queryThree(@Param("title") String title);
+
+    //named query - @Query is preferrable over this
+    public List<Book> queryFour();
 
 }
 

@@ -4,7 +4,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jondann on 7/29/16.
@@ -16,16 +18,34 @@ public class Application {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
 
-        BookService service = context.getBean(BookService.class);
+        BookRepository repository = context.getBean(BookRepository.class);
 
-        Book book = new Book();
-        book.setTitle("First New Book");
-        book.setPageCount(300);
-        book.setPrice(new BigDecimal("26.50"));
-        book.setPublishDate(new Date());
+        //oneBook(repository);
+        //allBooks(repository);
+        allCertainBooks(repository);
+    }
 
-        service.save(book);
+    private static void oneBook(BookRepository repository){
+        Book book = repository.findOne(1L);
+        System.out.println(book.toString());
+    }
 
-        System.out.println("book id: " + book.getBookId());
+    private static void allBooks(BookRepository repository){
+        List<Book> books = repository.findAll();
+        for (Book book: books){
+            System.out.println(book.toString());
+        }
+    }
+
+    private static void allCertainBooks(BookRepository repository){
+
+        List<Book> books = repository.findAll(new ArrayList<Long>(){{
+            add(1L);
+            add(3L);
+            add(7L);
+        }});
+        for (Book book: books){
+            System.out.println(book.toString());
+        }
     }
 }

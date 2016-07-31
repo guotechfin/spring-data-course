@@ -14,10 +14,19 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
     private Long bookId;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "publish_date")
     private Date publishDate;
+
+    @Column(name = "page_count")
     private int pageCount;
+
+    @Column(name = "price")
     private BigDecimal price;
 
     public Long getBookId() {
@@ -58,5 +67,16 @@ public class Book {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", publishDate=" + publishDate +
+                ", pageCount=" + pageCount +
+                ", price=" + price +
+                '}';
     }
 }

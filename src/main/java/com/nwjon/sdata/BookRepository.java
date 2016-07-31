@@ -1,6 +1,8 @@
 package com.nwjon.sdata;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -51,6 +53,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findFirstByOrderByPageCountAsc();
     public List<Book> findTop5ByOrderByPriceDesc();
     public List<Book> findTop5ByTitleOrderByPriceAsc(String title);
+
+    //jpql querys
+    @Query("select b from Book b")
+    public List<Book> queryOne();
+
+    @Query("select b from Book b where b.pageCount > ?1")
+    public List<Book> queryTwo(int pageCount);
+
+    @Query("select b from Book b where b.title = :title")
+    public List<Book> queryThree(@Param("title") String title);
 
 }
 

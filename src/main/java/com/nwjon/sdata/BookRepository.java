@@ -43,6 +43,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findByTitleContainingOrderByTitleAsc(String title);
     public List<Book> findByTitleContainingOrderByTitleDesc(String title);
 
+    //limiting results
+    //find all books and order by page count and then return top result
+    //get the max
+    //top and first are the same
+    public List<Book> findTopByOrderByPageCountDesc();
+    public List<Book> findFirstByOrderByPageCountAsc();
+    public List<Book> findTop5ByOrderByPriceDesc();
+    public List<Book> findTop5ByTitleOrderByPriceAsc(String title);
 
 }
 

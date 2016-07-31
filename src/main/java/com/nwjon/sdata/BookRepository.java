@@ -28,8 +28,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findByPageCountLessThanEqual(int pageCount);
     public List<Book> findByPageCountBetween(int min, int max);
 
-
-
+    public List<Book> findByTitleContainingOrContaining(String title, String title2);
+    public List<Book> findByTitleContainingAndPageCountGreaterThan(String title, int pageCount);
+    public List<Book> findByTitleNot(String title);
 
 }
 

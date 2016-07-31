@@ -1,6 +1,5 @@
 package com.nwjon.sdata;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
@@ -24,7 +23,8 @@ public class Application {
         //allBooks(repository);
         //allCertainBooks(repository);
         //saveMultiple(repository);
-        saveSingle(repository);
+        //saveSingle(repository);
+        modify(repository);
     }
 
     private static void oneBook(BookRepository repository){
@@ -65,5 +65,14 @@ public class Application {
         book.setPageCount(235);
 
         repository.save(book);
+    }
+
+    private static void modify(BookRepository repository){
+        Book book = repository.findOne(1L);
+        System.out.println(book);
+        book.setTitle("Jar not War");
+        repository.save(book);
+
+        System.out.println(book);
     }
 }

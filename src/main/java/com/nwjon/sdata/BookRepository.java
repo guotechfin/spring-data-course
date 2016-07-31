@@ -39,6 +39,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findByPublishDateBefore(Date date);
     public List<Book> findByPublishDateBetween(Date date1, Date date2);
 
+    //ordering
+    public List<Book> findByTitleContainingOrderByTitleAsc(String title);
+    public List<Book> findByTitleContainingOrderByTitleDesc(String title);
+
 
 }
 

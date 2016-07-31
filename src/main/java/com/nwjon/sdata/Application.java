@@ -19,7 +19,13 @@ public class Application {
 
         BookRepository repository = context.getBean(BookRepository.class);
 
-        oneBook(repository);
+        //System.out.println(repository.findByTitle("Design Patterns"));
+        //for (Book b: repository.findByTitleContaining("of")){
+        //    System.out.println(b);
+        //}
+
+
+        //oneBook(repository);
         //allBooks(repository);
         //allCertainBooks(repository);
         //saveMultiple(repository);

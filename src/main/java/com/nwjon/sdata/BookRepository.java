@@ -12,17 +12,23 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    //string comparison
     public Book findByTitle(String title);
-
     public List<Book> findByTitleLike(String title);
-
     public List<Book> findByTitleContaining(String title);
-
     public List<Book> findByTitleStartingWith(String title);
-
     public List<Book> findByTitleEndingWith(String title);
-
     public List<Book> findByTitleIgnoreCase(String title);
+
+    //relational comparison
+    public List<Book> findByPageCountEquals(int pageCount);
+    public List<Book> findByPageCountGreaterThan(int pageCount);
+    public List<Book> findByPageCountLessThan(int pageCount);
+    public List<Book> findByPageCountGreaterThanEqual(int pageCount);
+    public List<Book> findByPageCountLessThanEqual(int pageCount);
+    public List<Book> findByPageCountBetween(int min, int max);
+
+
 
 
 }

@@ -19,27 +19,37 @@ public class Application {
 
         BookRepository repository = context.getBean(BookRepository.class);
 
-        //oneBook(repository);
+        oneBook(repository);
         //allBooks(repository);
         //allCertainBooks(repository);
         //saveMultiple(repository);
         //saveSingle(repository);
-        modify(repository);
+        //modify(repository);
+
+        //repository.delete(1L);
+        //repository.delete(oneBook(repository));
+        //repository.delete(allCertainBooks(repository));
+        //repository.deleteInBatch(allCertainBooks(repository));
+        //repository.deleteAll();
+        //repository.deleteAllInBatch();
+
     }
 
-    private static void oneBook(BookRepository repository){
+    private static Book oneBook(BookRepository repository){
         Book book = repository.findOne(1L);
         System.out.println(book.toString());
+        return book;
     }
 
-    private static void allBooks(BookRepository repository){
+    private static List<Book> allBooks(BookRepository repository){
         List<Book> books = repository.findAll();
         for (Book book: books){
             System.out.println(book.toString());
         }
+        return books;
     }
 
-    private static void allCertainBooks(BookRepository repository){
+    private static List<Book> allCertainBooks(BookRepository repository){
 
         List<Book> books = repository.findAll(new ArrayList<Long>(){{
             add(1L);
@@ -49,6 +59,7 @@ public class Application {
         for (Book book: books){
             System.out.println(book.toString());
         }
+        return books;
     }
 
     private static void saveMultiple(BookRepository repository){

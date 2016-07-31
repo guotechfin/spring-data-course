@@ -22,7 +22,9 @@ public class Application {
 
         //oneBook(repository);
         //allBooks(repository);
-        allCertainBooks(repository);
+        //allCertainBooks(repository);
+        //saveMultiple(repository);
+        saveSingle(repository);
     }
 
     private static void oneBook(BookRepository repository){
@@ -47,5 +49,21 @@ public class Application {
         for (Book book: books){
             System.out.println(book.toString());
         }
+    }
+
+    private static void saveMultiple(BookRepository repository){
+        List<Book> books = BookUtil.create(5);
+        repository.save(books);
+    }
+
+    private static void saveSingle(BookRepository repository){
+
+        Book book = new Book();
+        book.setTitle("Such a good book");
+        book.setPrice(new BigDecimal("15.85"));
+        book.setPublishDate(new Date());
+        book.setPageCount(235);
+
+        repository.save(book);
     }
 }

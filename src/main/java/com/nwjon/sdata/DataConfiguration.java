@@ -1,5 +1,6 @@
 package com.nwjon.sdata;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,10 @@ public class DataConfiguration {
 
     @Bean
     public DataSource dataSource(){
+
+        //MysqlDataSource
+        //https://springframework.guru/configuring-spring-boot-for-mysql/
+
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder.setType(EmbeddedDatabaseType.H2).build();
     }

@@ -1,6 +1,8 @@
 package com.nwjon.sdata;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,8 +19,14 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    //return type can be
+    //Collection<Book>
+    //Iterable<Book>
+    //Page<Book>
+
     //string comparison
     public Book findByTitle(String title);
+
 
     public List<Book> findByTitleLike(String title);
     public List<Book> findByTitleContaining(String title);
@@ -75,9 +83,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     //paging
     //adding paging to a dervied method
-    public List<Book> findByPageCountGreaterThan(int pageCount, Pageable pageable);
+
+    public List<Book> findByPageCountGreaterThanEqualOrderByTitle(int pageCount, Pageable pageable);
+    public Page<Book> findByPageCountOrderByPageCount(int pageCount, Pageable pageable);
+    public Slice<Book> findByPublishDateOrderByPageCount(Date date, Pageable pageable);
 
     //sorting
-    public List<Book> findByPageCountGreaterThan(int pageCount, Sort sort);
+    public List<Book> findByPageCountGreaterThanEqualOrderByPageCount(int pageCount, Sort sort);
 }
 

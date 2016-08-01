@@ -1,7 +1,9 @@
 package com.nwjon.sdata;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
@@ -103,9 +105,22 @@ public class Application {
             System.out.println(b);
         }
 
-        for (Book b: repository.findByPageCountGreaterThan(90, new PageRequest(0,3))){
+        for (Book b: repository.findByPageCountGreaterThanEqualOrderByTitle(90, new PageRequest(0,3))){
             System.out.println(b);
         }
+
+        Page page = repository.findByPageCountOrderByPageCount(90, new PageRequest(0,3));
+        page.getTotalElements();
+        page.getTotalPages();
+
+        //when not considered about total number of pages in result set
+        //use more efficient slice
+        /*
+        Slice slice = repository.findByPublishDateThanOrderByPageCount(new Date(), new PageRequest(0,3));
+        slice.getNumberOfElements();
+        slice.getNumber();
+        slice.hasNext();
+        */
     }
 
     private static void sorting(BookRepository repository){
@@ -117,7 +132,7 @@ public class Application {
             System.out.println(b.getAuthor().getLastName() + ": " + b.getPageCount());
         }
 
-        for (Book b: repository.findByPageCountGreaterThan(90, new Sort("author.firstName"))){
+        for (Book b: repository.findByPageCountGreaterThanEqualOrderByPageCount(90, new Sort("author.firstName"))){
             System.out.println(b.getAuthor().getFirstName());
         }
     }

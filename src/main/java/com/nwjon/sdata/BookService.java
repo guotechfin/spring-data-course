@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
  * Created by jondann on 7/29/16.
  */
 
-@Service
+//@Service
 public class BookService {
 
     @Autowired

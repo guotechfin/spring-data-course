@@ -1,5 +1,7 @@
 package com.nwjon.sdata;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,11 +19,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     //string comparison
     public Book findByTitle(String title);
+
     public List<Book> findByTitleLike(String title);
     public List<Book> findByTitleContaining(String title);
     public List<Book> findByTitleStartingWith(String title);
     public List<Book> findByTitleEndingWith(String title);
     public List<Book> findByTitleIgnoreCase(String title);
+
 
     //relational comparison
     public List<Book> findByPageCountEquals(int pageCount);
@@ -32,7 +36,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findByPageCountBetween(int min, int max);
 
     //logical comparison
-    public List<Book> findByTitleContainingOrContaining(String title, String title2);
+    public List<Book> findByTitleContainingOrTitleContaining(String title, String title2);
     public List<Book> findByTitleContainingAndPageCountGreaterThan(String title, int pageCount);
     public List<Book> findByTitleNot(String title);
 
@@ -69,5 +73,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     //named query - @Query is preferrable over this
     public List<Book> queryFour();
 
+    //paging
+    //adding paging to a dervied method
+    public List<Book> findByPageCountGreaterThan(int pageCount, Pageable pageable);
+
+    //sorting
+    public List<Book> findByPageCountGreaterThan(int pageCount, Sort sort);
 }
 

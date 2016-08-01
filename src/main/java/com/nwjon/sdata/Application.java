@@ -1,6 +1,8 @@
 package com.nwjon.sdata;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,11 +21,13 @@ public class Application {
 
         BookRepository repository = context.getBean(BookRepository.class);
 
-        //System.out.println(repository.findByTitle("Design Patterns"));
-        //for (Book b: repository.findByTitleContaining("of")){
-        //    System.out.println(b);
-        //}
+//        System.out.println(repository.findByTitle("Design Patterns"));
+//        for (Book b: repository.findByPageCountGreaterThan(45)){
+//            System.out.println(b);
+//        }
 
+        //paging(repository);
+        sorting(repository);
 
         //oneBook(repository);
         //allBooks(repository);
@@ -91,5 +95,30 @@ public class Application {
         repository.save(book);
 
         System.out.println(book);
+    }
+
+    private static void paging(BookRepository repository){
+
+        for (Book b: repository.findAll(new PageRequest(0,3))){
+            System.out.println(b);
+        }
+
+        for (Book b: repository.findByPageCountGreaterThan(90, new PageRequest(0,3))){
+            System.out.println(b);
+        }
+    }
+
+    private static void sorting(BookRepository repository){
+
+        //direction is optional
+        //sort by multiple fields
+        //new Sort(Sort.Direction.DESC, "author.lastName", "pageCount")
+        for (Book b: repository.findAll(new Sort(Sort.Direction.DESC, "author.lastName").and(new Sort(Sort.Direction.ASC, "pageCount")))){
+            System.out.println(b.getAuthor().getLastName() + ": " + b.getPageCount());
+        }
+
+        for (Book b: repository.findByPageCountGreaterThan(90, new Sort("author.firstName"))){
+            System.out.println(b.getAuthor().getFirstName());
+        }
     }
 }

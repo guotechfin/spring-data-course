@@ -33,6 +33,10 @@ public class Book {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author author;
+
     public Long getBookId() {
         return bookId;
     }
@@ -73,6 +77,14 @@ public class Book {
         this.price = price;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -81,6 +93,7 @@ public class Book {
                 ", publishDate=" + publishDate +
                 ", pageCount=" + pageCount +
                 ", price=" + price +
+                ", author=" + author +
                 '}';
     }
 }

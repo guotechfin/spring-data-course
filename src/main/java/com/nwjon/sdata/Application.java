@@ -21,14 +21,14 @@ public class Application {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
 
-        BookRepository repository = context.getBean(BookRepository.class);
+        BookGlobalRepository repository = context.getBean(BookGlobalRepository.class);
 
-        repository.saveAndLog(BookUtil.create());
+        //repository.saveAndLog(BookUtil.create());
 
-//        System.out.println(repository.findByTitle("Design Patterns"));
-//        for (Book b: repository.findByPageCountGreaterThan(45)){
-//            System.out.println(b);
-//        }
+        //System.out.println(repository.findByTitle("Design Patterns"));
+        for (Book b: repository.findByIds(2L, 7L)){
+            System.out.println(b);
+        }
 
         //paging(repository);
         //sorting(repository);

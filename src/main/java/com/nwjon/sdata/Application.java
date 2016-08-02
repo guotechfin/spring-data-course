@@ -23,12 +23,17 @@ public class Application {
 
         BookGlobalRepository repository = context.getBean(BookGlobalRepository.class);
 
+
+        for (long x = 0; x < 4; x++){
+            repository.findByIds(x);
+        }
+
         //repository.saveAndLog(BookUtil.create());
 
         //System.out.println(repository.findByTitle("Design Patterns"));
-        for (Book b: repository.findByIds(2L, 7L)){
-            System.out.println(b);
-        }
+//        for (Book b: repository.findByPageCountGreaterThan(45)){
+//            System.out.println(b);
+//        }
 
         //paging(repository);
         //sorting(repository);

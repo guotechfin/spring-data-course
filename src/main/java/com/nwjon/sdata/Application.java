@@ -23,10 +23,15 @@ public class Application {
 
         BookGlobalRepository repository = context.getBean(BookGlobalRepository.class);
 
+        Book book = BookUtil.create();
+        repository.save(book);
 
-        for (long x = 0; x < 4; x++){
-            repository.findByIds(x);
-        }
+        System.out.println(repository.findOne(book.getBookId()));
+
+
+//        for (long x = 0; x < 4; x++){
+//            repository.findByIds(x);
+//        }
 
         //repository.saveAndLog(BookUtil.create());
 

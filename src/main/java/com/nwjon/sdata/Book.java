@@ -1,5 +1,11 @@
 package com.nwjon.sdata;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +20,7 @@ import java.util.Date;
     //use spring standard for name - class . method name
     @NamedQuery(name = "Book.queryFour", query = "select b from Book b")
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Book {
 
     @Id
@@ -36,6 +43,22 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="author_id")
     private Author author;
+
+    @Column(name = "created_by")
+    @CreatedBy
+    private String createdBy;
+
+    @Column(name = "last_modified_by")
+    @LastModifiedBy
+    private String lastModifiedBy;
+
+    @Column(name = "created_date")
+    @CreatedDate
+    private Date createdDate;
+
+    @Column(name = "last_modified_date")
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     public Long getBookId() {
         return bookId;
@@ -85,6 +108,38 @@ public class Book {
         this.author = author;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -94,6 +149,10 @@ public class Book {
                 ", pageCount=" + pageCount +
                 ", price=" + price +
                 ", author=" + author +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastModifiedBy='" + lastModifiedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
                 '}';
     }
 }

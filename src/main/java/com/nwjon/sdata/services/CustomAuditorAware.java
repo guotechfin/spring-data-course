@@ -1,4 +1,4 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.services;
 
 import org.springframework.data.domain.AuditorAware;
 

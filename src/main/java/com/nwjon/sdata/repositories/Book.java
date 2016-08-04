@@ -1,4 +1,4 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.repositories;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

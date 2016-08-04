@@ -1,4 +1,4 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.repositories;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

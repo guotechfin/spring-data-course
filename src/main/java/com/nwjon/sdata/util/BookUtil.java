@@ -1,4 +1,6 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.util;
+
+import com.nwjon.sdata.repositories.Book;
 
 import java.math.BigDecimal;
 import java.util.Date;

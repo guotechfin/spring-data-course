@@ -1,5 +1,6 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.repositories;
 
+import com.nwjon.sdata.repositories.BaseRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 

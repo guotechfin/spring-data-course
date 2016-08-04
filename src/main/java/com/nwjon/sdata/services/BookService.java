@@ -1,7 +1,8 @@
-package com.nwjon.sdata;
+package com.nwjon.sdata.services;
 
+import com.nwjon.sdata.repositories.Book;
+import com.nwjon.sdata.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by jondann on 7/29/16.
